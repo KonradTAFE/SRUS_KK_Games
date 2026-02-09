@@ -3,10 +3,14 @@ from app.player import Player
 
 class TestPlayer(unittest.TestCase):
 
+    def setUp(self):
+        self.new_player = Player("1", "one")
+
     def test_uid(self):
-        new_player = Player("1", "one")
-        self.assertEqual("1", new_player.uid)
+        self.assertEqual("1", self.new_player.uid)
 
     def test_name(self):
-        new_player = Player("1", "one")
-        self.assertEqual("one", new_player.name)
+        self.assertEqual("one", self.new_player.name)
+
+if __name__ == '__main__':
+    unittest.main()
