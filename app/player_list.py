@@ -30,8 +30,39 @@ class PlayerList:
             self.set_head(new_player)
             self.set_tail(new_player)
             return
-
         self.head.set_previous(new_player)
         new_player.set_next(self.head)
         self.set_head(new_player)
+
+    def add_to_tail(self, player: Player):
+        new_player = PlayerNode(player)
+        if self.is_empty():
+            self.set_head(new_player)
+            self.set_tail(new_player)
+            return
+        self.tail.set_next(new_player)
+        new_player.set_previous(self.tail)
+        self.set_tail(new_player)
+
+    def delete_head(self):
+        if self.is_empty():
+            return None
+        if self.head.next is None:
+            self.set_head(None)
+            return self.head
+        else:
+            self.head.next.set_previous(None)
+            self.set_head(self.head.next)
+            return self.head
+
+    def delete_tail(self):
+        if self.is_empty():
+            return None
+        if self.tail.previous is None:
+            self.set_tail(None)
+            return self.tail
+        else:
+            self.tail.previous.set_next(None)
+            self.set_tail(self.tail.previous)
+            return self.tail
 
