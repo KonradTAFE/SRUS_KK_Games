@@ -56,6 +56,14 @@ class TestPlayer(unittest.TestCase):
         self.new_list.delete_tail()
         self.assertEqual(player_one, self.new_list.tail.player)
 
+    def test_delete_key(self):
+        player_one = Player("1", "a")
+        player_two = Player("2", "b")
+        self.new_list.add_to_start(player_one)
+        self.new_list.add_to_tail(player_two)
+        self.new_list.delete_key("1")
+        self.assertEqual(player_two, self.new_list.head.player)
+        self.assertEqual(player_two, self.new_list.tail.player)
 
 if __name__ == '__main__':
     unittest.main()

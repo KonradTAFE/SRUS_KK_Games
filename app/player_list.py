@@ -66,3 +66,19 @@ class PlayerList:
             self.set_tail(self.tail.previous)
             return self.tail
 
+    def delete_key(self, key: str):
+        current = self.head
+        previous = self.head
+        while current.player.uid != key:
+            if current.next is None:
+                return None
+            else:
+                previous = current
+                current = current.next
+        if current == self.head:
+            self.set_head(self.head.next)
+            self.head.set_previous(None)
+        else:
+            previous.set_next(current.next)
+            current.set_previous(previous)
+        return current
