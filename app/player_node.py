@@ -10,24 +10,23 @@ class PlayerNode:
     def player(self):
         return self.__player
 
-    @player.setter
-    def set_player(self, value):
+
+    def set_player(self, value: Player):
         self.__player = value
 
     @property
     def previous(self):
         return self.__previous
 
-    @previous.setter
-    def set_previous(self, value):
+
+    def set_previous(self, value: Player):
         self.__previous = value
 
     @property
     def next(self):
         return self.__next
 
-    @next.setter
-    def set_next(self, value):
+    def set_next(self, value: Player):
         self.__next = value
 
     @property
