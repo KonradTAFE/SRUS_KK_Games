@@ -12,7 +12,8 @@ class PlayerList:
         # returns the first player
         return self.__head
 
-    def set_head(self, value: PlayerNode):
+    @head.setter
+    def head(self, value: PlayerNode | None):
         # new head setter
         self.__head = value
 
@@ -21,7 +22,8 @@ class PlayerList:
         # returns the last player
         return self.__tail
 
-    def set_tail(self, value: PlayerNode):
+    @tail.setter
+    def tail(self, value: PlayerNode | None):
         # new tail setter
         self.__tail = value
 
@@ -33,32 +35,32 @@ class PlayerList:
         new_player = PlayerNode(player)
         # if the list is empty, assign the new node as the list's head and tail
         if self.is_empty():
-            self.set_head(new_player)
-            self.set_tail(new_player)
+            self.head = new_player
+            self.tail = new_player
             return
         # if not empty:
             # assign the new player as a previous for old head
-        self.head.set_previous(new_player)
+        self.head.previous = new_player
             # assign the old head as the new player's next
-        new_player.set_next(self.head)
+        new_player.next = self.head
             # assign the new player as the list's head
-        self.set_head(new_player)
+        self.head = new_player
 
     def add_to_tail(self, player: Player):
         # create new player node with passed player data
         new_player = PlayerNode(player)
         # if the list is empty, assign the new node as the list's head and tail
         if self.is_empty():
-            self.set_head(new_player)
-            self.set_tail(new_player)
+            self.head = new_player
+            self.tail = new_player
             return
         # if not empty:
             # assign the new player as a next for old tail
-        self.tail.set_next(new_player)
+        self.tail.next = new_player
             # assign the old tail as the new player's previous
-        new_player.set_previous(self.tail)
+        new_player.previous = self.tail
             # assign the new player as the list's tail
-        self.set_tail(new_player)
+        self.tail = new_player
 
     def delete_head(self):
         # if empty, return nothing
@@ -66,14 +68,14 @@ class PlayerList:
             return None
         # if only one item, set head to none and return
         if self.head.next is None:
-            self.set_head(None)
+            self.head = None
             return self.head
         # if more than one item:
         else:
             # delete the second item's previous
-            self.head.next.set_previous(None)
+            self.head.next.previous = None
             # set second item as head
-            self.set_head(self.head.next)
+            self.head = self.head.next
             return self.head
 
     def delete_tail(self):
@@ -82,14 +84,14 @@ class PlayerList:
             return None
         # if only one item, set head to none and return
         if self.tail.previous is None:
-            self.set_tail(None)
+            self.tail = None
             return self.tail
         # if more than one item:
         else:
             # delete the second from end item's next
-            self.tail.previous.set_next(None)
+            self.tail.previous.next = None
             # set second from end item as tail
-            self.set_tail(self.tail.previous)
+            self.tail = self.tail.previous
             return self.tail
 
     def delete_key(self, key: str):
@@ -106,12 +108,12 @@ class PlayerList:
                 current = current.next
         # if the key is found and the node is the head, reassign the head to the next item
         if current == self.head:
-            self.set_head(self.head.next)
-            self.head.set_previous(None)
+            self.head = self.head.next
+            self.head.set_previous = None
         # if the key is not the head, reassign the connections
         else:
-            previous.set_next(current.next)
-            current.set_previous(previous)
+            previous.next = current.next
+            current.previous = previous
         return current
 
     def display(self, forward = True):
