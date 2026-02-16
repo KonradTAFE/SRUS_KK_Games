@@ -10,7 +10,6 @@ class PlayerNode:
     def player(self):
         return self.__player
 
-
     def set_player(self, value: Player):
         self.__player = value
 
