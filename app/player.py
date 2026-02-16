@@ -5,11 +5,14 @@ class Player:
 
     @property
     def uid(self):
+        # returns the player id
         return self.__uid
 
     @property
     def name(self):
+        # returns the player name
         return self.__name
 
     def __str__(self):
+        # returns player as a string
         return "Player " + self.uid + " - " + self.name
