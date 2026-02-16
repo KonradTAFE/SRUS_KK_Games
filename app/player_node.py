@@ -18,7 +18,6 @@ class PlayerNode:
     def previous(self):
         return self.__previous
 
-
     def set_previous(self, value: Player):
         self.__previous = value
 
@@ -34,4 +33,4 @@ class PlayerNode:
         return self.player.uid
 
     def __str__(self):
-        return f'Player {self.player.uid}'
+        return str(self.player)

@@ -82,3 +82,17 @@ class PlayerList:
             previous.set_next(current.next)
             current.set_previous(previous)
         return current
+
+    def display(self, forward = True):
+        if forward:
+            print("Player list from the start:")
+            current = self.head
+            while current is not None:
+                print(current)
+                current = current.next
+        else:
+            print("Player list from the end:")
+            current = self.tail
+            while current is not None:
+                print(current)
+                current = current.previous

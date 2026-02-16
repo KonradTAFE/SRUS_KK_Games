@@ -1,15 +1,15 @@
 class Player:
     def __init__(self, uid: str, name: str):
-        self._uid = uid
-        self._name = name
+        self.__uid = uid
+        self.__name = name
 
     @property
     def uid(self):
-        return self._uid
+        return self.__uid
 
     @property
     def name(self):
-        return self._name
+        return self.__name
 
     def __str__(self):
         return "Player " + self.uid + " - " + self.name
