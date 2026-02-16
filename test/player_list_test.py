@@ -49,7 +49,7 @@ class TestPlayer(unittest.TestCase):
     def test_delete_key(self):
         self.new_list.add_to_start(self.player_one)
         self.new_list.add_to_tail(self.player_two)
-        self.new_list.delete_key("1")
+        self.new_list.delete_key(self.player_one.uid)
         self.assertEqual(self.player_two, self.new_list.head.player)
         self.assertEqual(self.player_two, self.new_list.tail.player)
 
