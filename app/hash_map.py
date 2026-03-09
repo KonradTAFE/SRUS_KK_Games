@@ -59,6 +59,6 @@ class HashMap:
             display += "\n" + str(self.table.index(_)) + "\n"
             current = _.head
             while current is not None:
-                display += _.head.player.uid + _.head.player.name + "\n"
+                display += current.player.uid + current.player.name + "\n"
                 current = current.next
         return display
