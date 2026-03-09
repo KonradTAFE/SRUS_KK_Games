@@ -123,7 +123,8 @@ class PlayerList:
         # if the key is found and the node is the head, reassign the head to the next item
         if current == self.head:
             self.head = self.head.next
-            self.head.set_previous = None
+            if self.head is not None:
+                self.head.set_previous = None
         # if the key is not the head, reassign the connections
         else:
             previous.next = current.next

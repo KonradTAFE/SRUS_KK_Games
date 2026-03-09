@@ -3,8 +3,7 @@ from app.player_list import PlayerList
 
 
 class HashMap:
-    def __init__(self, max_size = 10):
-        self.current_size = 0
+    def __init__(self, max_size:int = 10):
         self.__max_size = max_size
         self.table = []
         for _ in range(max_size):
@@ -12,22 +11,21 @@ class HashMap:
 
     def get_index(self, key: str | Player) -> int:
         if isinstance(key, Player):
-            return hash(key) % self.size()
+            return hash(key) % self.__max_size
         else:
-            return Player.hash_function(key) % self.size()
+            return Player.hash_function(key) % self.__max_size
 
     def put(self, key: str, name: str):
         index = self.get_index(key)
         player_list = self.table[index]
         if player_list.find_key(key) is None:
             player_list.add_to_tail(Player(key, name))
-            self.current_size += 1
             return
         player = player_list.find_key(key)
         player.name = name
 
 
-    def get(self, key) -> Player | None:
+    def get(self, key: str) -> Player | None:
         index = self.get_index(key)
         player_list = self.table[index]
         if player_list.find_key(key) is None:
@@ -35,8 +33,22 @@ class HashMap:
         else:
             return player_list.find_key(key)
 
-    def remove(self, key):
-        pass
+    def remove(self, key: str):
+        player_list = self.table[self.get_index(key)]
+        player = self.get(key)
+        if player is None:
+            print("Player not found")
+            return None
+        else:
+            player_list.delete_key(key)
+            print(f"{player} removed!")
+            return player
 
     def size(self) -> int:
-        return self.__max_size
+        current_size = 0
+        for _ in self.table:
+            current = _.head
+            while current is not None:
+                current_size += 1
+                current = current.next
+        return current_size
