@@ -3,11 +3,11 @@ from app.player_list import PlayerList
 
 
 class HashMap:
-    def __init__(self, size = 10):
+    def __init__(self, max_size = 10):
         self.current_size = 0
-        self.__max_size = size
+        self.__max_size = max_size
         self.table = []
-        for _ in range(size):
+        for _ in range(max_size):
             self.table.append(PlayerList())
 
     def get_index(self, key: str | Player) -> int:
@@ -27,8 +27,13 @@ class HashMap:
         player.name = name
 
 
-    def get(self, key):
-        pass
+    def get(self, key) -> Player | None:
+        index = self.get_index(key)
+        player_list = self.table[index]
+        if player_list.find_key(key) is None:
+            return None
+        else:
+            return player_list.find_key(key)
 
     def remove(self, key):
         pass
