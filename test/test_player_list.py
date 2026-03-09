@@ -53,5 +53,10 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(self.player_two, self.new_list.head.player)
         self.assertEqual(self.player_two, self.new_list.tail.player)
 
+    def test_find_key(self):
+        self.new_list.add_to_start(self.player_one)
+        player = self.new_list.find_key("1")
+        self.assertEqual(player, self.player_one)
+
 if __name__ == '__main__':
     unittest.main()

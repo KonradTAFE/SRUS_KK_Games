@@ -94,6 +94,20 @@ class PlayerList:
             self.tail = self.tail.previous
             return self.tail
 
+    def find_key(self, key: str):
+        # create dummy variables for reassigning purposes
+        current = self.head
+        # travers through the list to find the key
+        if current is None:
+            return None
+        while current.player.uid != key:
+            # if key not found, return None
+            if current.next is None:
+                return None
+            else:
+                current = current.next
+        return current.player
+
     def delete_key(self, key: str):
         # create dummy variables for reassigning purposes
         current = self.head
