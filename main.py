@@ -14,4 +14,4 @@ hash_map.put("fed", "fed")
 hash_map.put("ghi", "ghi")
 hash_map.put("ihg", "ihg")
 
-print(hash_map.display_map())
+print(hash_map.display())

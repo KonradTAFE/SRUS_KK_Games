@@ -53,12 +53,13 @@ class HashMap:
                 current = current.next
         return current_size
 
-    def display_map(self):
-        display = ""
+    def display(self):
+        display_string = ""
         for _ in self.table:
-            display += "\n" + str(self.table.index(_)) + "\n"
+            display_string += "Index " + str(self.table.index(_)) + ":\n"
             current = _.head
             while current is not None:
-                display += current.player.uid + current.player.name + "\n"
+                display_string += "    " + str(current.player) + "\n"
                 current = current.next
-        return display
+            display_string += "\n"
+        return display_string
