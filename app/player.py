@@ -18,14 +18,14 @@ class Player:
         self.__name = name
 
     @classmethod
-    def hash_function(cls, key: str) -> int:
+    def hash_function(cls, key: str, size: int) -> int:
         hash_value = 0
         for char in key:
             hash_value += ord(char)
-        return hash_value
+        return hash_value % size
 
-    def __hash__(self):
-        return self.hash_function(self.uid)
+    def __hash__(self, size: int):
+        return self.hash_function(self.uid) % size
 
     def __eq__(self, other):
         return self.uid == other.uid

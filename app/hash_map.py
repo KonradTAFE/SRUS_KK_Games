@@ -13,7 +13,7 @@ class HashMap:
         if isinstance(key, Player):
             return hash(key) % self.__max_size
         else:
-            return Player.hash_function(key) % self.__max_size
+            return Player.hash_function(key, self.__max_size)
 
     def put(self, key: str, name: str):
         index = self.get_index(key)
