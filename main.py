@@ -1,7 +1,7 @@
 from app.player import Player
 from app.player_node import PlayerNode
 from app.player_list import PlayerList
-from hash_map import HashMap
+from app.hash_map import HashMap
 
 player_one = Player("1", "a")
 player_two = Player("2", "b")
