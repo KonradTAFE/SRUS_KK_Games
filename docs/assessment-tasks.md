@@ -64,9 +64,9 @@ You can mark this task as complete when you have (your assessor will use a simil
 - [x] Correct use of private instance variable
 - [x] Score is optional (in the constructor) and defaults to 0
 - [x] Use of properties to create a getter and setter
-- [ ] Raising ValueError if someone attempts to set a non-positive value
-- [ ] Existing tests pass
-- [ ] At least one (and ideally only one) commit showing the above changes
+- [x] Raising ValueError if someone attempts to set a non-positive value
+- [x] Existing tests pass
+- [x] At least one (and ideally only one) commit showing the above changes
 
 ## 4. Sorting players
 
@@ -97,14 +97,22 @@ def test_sort_players(self):
 What was the outcome of running the above unit test, copy paste the output **for just this particular test** below:
 
 ```text
-Copy the traceback you got when you ran the test here.
+FAILED (errors=1)
+
+Error
+Traceback (most recent call last):
+  File "C:\Users\20147441\source\repos\SRUS_KK_Games\test\test_player.py", line 20, in test_sort_players
+    sorted_players = sorted(players)
+                     ^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'Player' and 'Player'
+
 ```
 
 ### 4.3. Success criteria
 
-- [ ] Unit test added to `test_player.py`
-- [ ] Unit test output provided
-- [ ] Unit test output reflects the error in `sorted(players)` (if you are getting another error read the instructions CAREFULLY)
+- [x] Unit test added to `test_player.py`
+- [x] Unit test output provided
+- [x] Unit test output reflects the error in `sorted(players)` (if you are getting another error read the instructions CAREFULLY)
 
 #### 4.3.1. Question: What dunder method is required for Python to sort players?
 
@@ -114,8 +122,8 @@ What is the **only** magic method that must be implemented in the player class f
 
 **Hint:** if you don't recall this from class, the error message you got when you ran the test will help you.
 -------
-> Answer Here
-> Yes, here - instead of this text!
+> The magic method required for the sorted function to succeed is the __lt__ method.
+> Since we want to sort the players by their score, the method needs to be overwritten to compare them.
 -------
 #### 4.3.2. Task: Implement the magic method in the Player class
 
@@ -136,7 +144,12 @@ def test_players_can_be_compared_by_score(self):
 Run the test and confirm that your error resembles the previous error
 
 ```text
-INSERT ERROR OUTPUT HERE
+Error
+Traceback (most recent call last):
+  File "C:\Users\20147441\source\repos\SRUS_KK_Games\test\test_player.py", line 34, in test_players_can_be_compared_by_score
+    self.assertTrue(bob < alice)
+                    ^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'Player' and 'Player'
 ```
 
 - Implement the appropriate magic method in the Player class and ensure you pass this test
