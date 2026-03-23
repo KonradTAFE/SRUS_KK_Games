@@ -37,6 +37,20 @@ class Player:
             hash_value += ord(char)
         return hash_value % size
 
+    @classmethod
+    def sort_quickly(cls, player_list):
+        if len(player_list) <= 1:
+            return player_list
+        pivot = player_list[0]
+        left = []
+        right = []
+        for x in player_list[1:]:
+            if x > pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
+
     def __hash__(self, size: int):
         return self.hash_function(self.uid, size)
 

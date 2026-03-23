@@ -219,7 +219,11 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> Answer here
+> The function uses a quicksort algorithm, and the time complexity for that is O(n log n), but in worst case scenario can even be O(n^2).
+> Space complexity can vary from O(log n) in best case to O(n) in worst case scenario.
+> The time and space complexity of quicksort is greatly impacted by the pivot chosen at each recursion.
+>
+> References: https://learning.oreilly.com/library/view/grokking-algorithms/9781617292231/OEBPS/Text/kindle_split_010.html
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -234,15 +238,28 @@ Add a separate test case to `test_player.py` to test your custom sorting algorit
 Include your code below:
 
 ```python
-# YOUR CUSTOM Sorting here
+    @classmethod
+    def sort_quickly(cls, player_list):
+        if len(player_list) <= 1:
+            return player_list
+        pivot = player_list[0]
+        left = []
+        right = []
+        for x in player_list[1:]:
+            if x > pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
+
 ```
 
 #### 5.2.3. Success criteria
 
-- [ ] Custom sorting algorithm implemented in the `Player` class as `classmethod`
-- [ ] Custom sorting algorithm sorts in descending order
-- [ ] Custom sorting algorithm compares players using their score (via the rich comparison operators)
-- [ ] Custom sorting algorithm tested in `test_player.py` and tests passed
+- [x] Custom sorting algorithm implemented in the `Player` class as `classmethod`
+- [x] Custom sorting algorithm sorts in descending order
+- [x] Custom sorting algorithm compares players using their score (via the rich comparison operators)
+- [x] Custom sorting algorithm tested in `test_player.py` and tests passed
 - [ ] At least one commit capturing the above changes
 
 ### 5.3. Test your custom sorting algorithm at scale

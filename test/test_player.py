@@ -25,6 +25,18 @@ class TestPlayer(unittest.TestCase):
 
         self.assertListEqual(sorted_players, manually_sorted_players)
 
+    def test_sort_with_classmethod(self):
+        players = [Player(name="Alice", uid='01', score=10), Player(name="Bob", uid='02', score=5),
+                   Player(name="Charlie", uid='03', score=15)]
+
+        # do **not** change the following code:
+        sorted_players = Player.sort_quickly(players)
+
+        # players must be sorted by score as shown here:
+        manually_sorted_players = [Player(name="Charlie", uid='03', score=15), Player(name="Alice", uid='01', score=10), Player(name="Bob", uid='02', score=5)]
+
+        self.assertListEqual(sorted_players, manually_sorted_players)
+
     def test_players_can_be_compared_by_score(self):
         # note: ensure initialization code is valid for **your** implementation
         alice = Player(name="Alice", uid='01', score=10)
