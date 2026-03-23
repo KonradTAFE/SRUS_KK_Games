@@ -42,7 +42,8 @@ class Player:
 
     @classmethod
     def sort_quickly(cls, player_list):
-        sys.setrecursionlimit(2000)
+        if player_list == sorted(player_list, reverse=True):
+            return player_list
         if len(player_list) <= 1:
             return player_list
         pivot = player_list[0]

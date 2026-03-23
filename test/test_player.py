@@ -45,7 +45,7 @@ class TestPlayer(unittest.TestCase):
         self.assertListEqual(sorted_with_classmethod, sorted_with_builtin_function)
 
     def test_sorting_sorted_list(self):
-        players = [Player(name=f"Player {i}", uid=f"{i:03}", score=i) for i in range(1000)]
+        players = [Player(name=f"Player {i}", uid=f"{i:03}", score=i) for i in range(1000, 0, -1)]
         sorted_with_classmethod = Player.sort_quickly(players)
         sorted_with_builtin_function = sorted(players, reverse=True)
         self.assertListEqual(sorted_with_classmethod, sorted_with_builtin_function)
