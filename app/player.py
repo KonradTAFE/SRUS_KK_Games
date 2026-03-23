@@ -1,3 +1,6 @@
+import sys
+
+
 class Player:
     def __init__(self, uid: str, name: str, score: int = 0):
         self.__uid = uid
@@ -39,21 +42,17 @@ class Player:
 
     @classmethod
     def sort_quickly(cls, player_list):
+        sys.setrecursionlimit(2000)
         if len(player_list) <= 1:
             return player_list
-        middle = len(player_list)//2
-        pivot = player_list[middle]
-        left = player_list[:middle]
-        right = player_list[middle + 1 :]
-        low = 0
-        high = len(right)-1
-        for x in player_list:
+        pivot = player_list[0]
+        left = []
+        right = []
+        for x in player_list[1:]:
             if x > pivot:
                 left.append(x)
             else:
                 right.append(x)
-
-
         return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
 
     def __hash__(self, size: int):
