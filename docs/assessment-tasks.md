@@ -158,35 +158,35 @@ TypeError: '<' not supported between instances of 'Player' and 'Player'
 
 #### 4.3.3. Success criteria
 
-- [ ] Unit test added to `test_player.py`
-- [ ] Magic method implemented in `Player` class
-- [ ] Initial Failed Unit test output provided
-- [ ] Unit test runs successfully with submitted code
-- [ ] Dunder method not employed directly
-- [ ] At least one commit capturing the above changes
+- [x] Unit test added to `test_player.py`
+- [x] Magic method implemented in `Player` class
+- [x] Initial Failed Unit test output provided
+- [x] Unit test runs successfully with submitted code
+- [x] Dunder method not employed directly
+- [x] At least one commit capturing the above changes
 
 #### 4.3.4. Task: Are we sorted yet?
 
 Rerun `test_sort_players` does the test pass? If not, include the output below:
 
 ```text
-Your output here
+Tests passed
 ```
 
 ##### 4.3.4.1 Question: why did the equality comparison fail?
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to do so - if that's the case, you need to figure out what that is!)?
 -------
-> Answer here
->
+> I implemented the __lt__ method first, while for the test_players_can_be_compared_by_score in the given shape (self.assert<AppropriateComparisonMethod>(alice, bob)) I should have added the __gt__ method.
+> For the code to be complete, I have eventually added both dunder methods to the Player class.
 -------
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
 
 #### 4.3.5. Success criteria
 
-- [ ] Correct explanation of why `test_sort_players` failed/passed
-- [ ] Correct implementation of the magic method in the `Player` class
-- [ ] `test_sort_players` passes when run against the submitted code
-- [ ] At least one commit capturing the above changes
+- [x] Correct explanation of why `test_sort_players` failed/passed
+- [x] Correct implementation of the magic method in the `Player` class
+- [x] `test_sort_players` passes when run against the submitted code
+- [x] At least one commit capturing the above changes
 
 ## 5. Implement a custom sorting algorithm
 

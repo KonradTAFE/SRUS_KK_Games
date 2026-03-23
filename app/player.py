@@ -46,6 +46,9 @@ class Player:
     def __lt__(self, other):
         return self.score < other.score
 
+    def __gt__(self, other):
+        return self.score > other.score
+
     def __str__(self):
         # returns player as a string
         return f"Player {self.uid} - {self.name} - score: {self.score}"
