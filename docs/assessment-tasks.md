@@ -254,6 +254,18 @@ Include your code below:
                 right.append(x)
         return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
 
+
+    def test_sort_with_classmethod(self):
+        players = [Player(name="Alice", uid='01', score=10), Player(name="Bob", uid='02', score=5),
+                   Player(name="Charlie", uid='03', score=15)]
+
+        # do **not** change the following code:
+        sorted_players = Player.sort_quickly(players)
+
+        # players must be sorted by score as shown here:
+        manually_sorted_players = [Player(name="Charlie", uid='03', score=15), Player(name="Alice", uid='01', score=10), Player(name="Bob", uid='02', score=5)]
+
+        self.assertListEqual(sorted_players, manually_sorted_players)
 ```
 
 #### 5.2.3. Success criteria
@@ -345,25 +357,44 @@ If your implementation did not fail, you must nevertheless explain why the senio
 
 > Sorting a sorted list with the sample algorithm exceeds the Python's built-in recursion depth - the space complexity is too big as the function needs to be run too many times.
 > This happens because with sorted list, all the elements are placed into the left list and the operation is repeated with the right list staying empty.
-> One solution to this problem would be to pick a different pivot - for example the middle index.
-> Another solution is to overwrite the built-in recursion limit.
+> One solution to this problem would be to overwrite the built-in recursion limit.
+> Another solution is to verify if the list is already sorted before, and if so, return the list as it is.
 > 
 > References: https://www.geeksforgeeks.org/python/python-handling-recursion-limit/
 
 Propose a fix to your sorting algorithm that fixes this issue.
 
 ```python
-# YOUR FIX HERE
-# Highlight what the fix was
+    @classmethod
+    def sort_quickly(cls, player_list):
+    
+    # CHANGE:
+        if player_list == sorted(player_list, reverse=True):
+            return player_list
+        elif player_list == sorted(player_list):
+            return sorted(player_list, reverse=True)
+    # END OF CHANGE
+    
+        if len(player_list) <= 1:
+            return player_list
+        pivot = player_list[0]
+        left = []
+        right = []
+        for x in player_list[1:]:
+            if x > pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
 ```
 
 #### 5.3.5. Success criteria
 
-- [ ] Test case added to `test_player.py`
-- [ ] Test case passes only when changes above are added
-- [ ] Explanation of why the algorithm fails on presorted values
-- [ ] Fix to the algorithm provided
-- [ ] At least one commit capturing the above changes
+- [x] Test case added to `test_player.py`
+- [x] Test case passes only when changes above are added
+- [x] Explanation of why the algorithm fails on presorted values
+- [x] Fix to the algorithm provided
+- [x] At least one commit capturing the above changes
 
 ## 6. Task: Authenticity of in class work
 
@@ -384,13 +415,13 @@ I understand that until I meet my assessor to confirm that this work is a valid 
 
 ## 7. Submit your work
 
-- [ ] Ensure all tasks are complete and tests pass
-- [ ] Answer all questions in your own words
-- [ ] Complete the statement of authenticity
-- [ ] Include `.git` showing each task committed (you must show at least 5 commits)
-- [ ] Annotated tag of your last commit as `por3-finish`
-- [ ] Push your changes to your GitHub repository
-- [ ] Submit a zip of your repository to the LMS (ensure you do not add the `.venv` or `__pycache__` folders)
+- [x] Ensure all tasks are complete and tests pass
+- [x] Answer all questions in your own words
+- [x] Complete the statement of authenticity
+- [x] Include `.git` showing each task committed (you must show at least 5 commits)
+- [x] Annotated tag of your last commit as `por3-finish`
+- [x] Push your changes to your GitHub repository
+- [x] Submit a zip of your repository to the LMS (ensure you do not add the `.venv` or `__pycache__` folders)
 
 ---
 End of assessment task

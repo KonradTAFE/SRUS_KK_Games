@@ -44,6 +44,8 @@ class Player:
     def sort_quickly(cls, player_list):
         if player_list == sorted(player_list, reverse=True):
             return player_list
+        elif player_list == sorted(player_list):
+            return sorted(player_list, reverse=True)
         if len(player_list) <= 1:
             return player_list
         pivot = player_list[0]
