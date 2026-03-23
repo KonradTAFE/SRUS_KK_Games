@@ -41,21 +41,26 @@ class Player:
     def sort_quickly(cls, player_list):
         if len(player_list) <= 1:
             return player_list
-        pivot = player_list[0]
-        left = []
-        right = []
-        for x in player_list[1:]:
+        middle = len(player_list)//2
+        pivot = player_list[middle]
+        left = player_list[:middle]
+        right = player_list[middle + 1 :]
+        low = 0
+        high = len(right)-1
+        for x in player_list:
             if x > pivot:
                 left.append(x)
             else:
                 right.append(x)
+
+
         return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
 
     def __hash__(self, size: int):
         return self.hash_function(self.uid, size)
 
     def __eq__(self, other):
-        return self.uid == other.uid
+        return self.score == other.score
 
     def __lt__(self, other):
         return self.score < other.score

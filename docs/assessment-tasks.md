@@ -220,10 +220,12 @@ def sort_quickly(arr):
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
 > The function uses a quicksort algorithm, and the time complexity for that is O(n log n), but in worst case scenario can even be O(n^2).
-> Space complexity can vary from O(log n) in best case to O(n) in worst case scenario.
+> Space complexity is a constant O(n).
 > The time and space complexity of quicksort is greatly impacted by the pivot chosen at each recursion.
 >
 > References: https://learning.oreilly.com/library/view/grokking-algorithms/9781617292231/OEBPS/Text/kindle_split_010.html
+>             Blackboard Session 7 - Additional sorting and searching slides
+
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -296,7 +298,7 @@ Include your test case below:
 - [x] Test case added to `test_player.py`
 - [x] Test case sorts 1000 players correctly when compared to `sorted` function
 - [x] Test case passes when run against the submitted code
-- [ ] At least one commit capturing the above changes
+- [x] At least one commit capturing the above changes
 
 #### 5.3.3. Task: Testing sorting sorted players
 
@@ -309,7 +311,30 @@ Create a test case that tries to sort 1000 players that are already sorted.
 If you get a failure, include the failure below:
 
 ```text
-YOUR FAILURE HERE
+FAILED (errors=1)
+
+Error
+Traceback (most recent call last):
+  File "C:\Users\20147441\source\repos\SRUS_KK_Games\test\test_player.py", line 49, in test_sorting_sorted_list
+    sorted_with_classmethod = Player.sort_quickly(players)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\20147441\source\repos\SRUS_KK_Games\app\player.py", line 52, in sort_quickly
+    return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\20147441\source\repos\SRUS_KK_Games\app\player.py", line 52, in sort_quickly
+    return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\20147441\source\repos\SRUS_KK_Games\app\player.py", line 52, in sort_quickly
+    return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 979 more times]
+  File "C:\Users\20147441\source\repos\SRUS_KK_Games\app\player.py", line 48, in sort_quickly
+    if x > pivot:
+       ^^^^^^^^^
+  File "C:\Users\20147441\source\repos\SRUS_KK_Games\app\player.py", line 64, in __gt__
+    return self.score > other.score
+           ^^^^^^^^^^
+RecursionError: maximum recursion depth exceeded
 ```
 
 ##### 5.3.4.1 Question: Why does the algorithm fail on presorted values?
@@ -318,7 +343,12 @@ Provide a reason why this test failed (if you got a recursion errors, you need t
 
 If your implementation did not fail, you must nevertheless explain why the senior developers algorithm has worse space complexity for presorted values.
 
-> Answer here
+> Sorting a sorted list with the sample algorithm exceeds the Python's built-in recursion depth - the space complexity is too big as the function needs to be run too many times.
+> This happens because with sorted list, all the elements are placed into the left list and the operation is repeated with the right list staying empty.
+> One solution to this problem would be to pick a different pivot - for example the middle index.
+> Another solution is to overwrite the built-in recursion limit.
+> 
+> References: https://www.geeksforgeeks.org/python/python-handling-recursion-limit/
 
 Propose a fix to your sorting algorithm that fixes this issue.
 
@@ -340,7 +370,7 @@ Propose a fix to your sorting algorithm that fixes this issue.
 Complete the following snippet before you submit:
 
 ```text
-I, <name and student number>, completed this work in class <room number>, on <date>, under the supervision of <assessor's name>.
+I, Konrad Krzyzkowiak, student ID 20147441, completed this work in class 3-03, on 23.03.2026, under the supervision of Adrian Gould.
 ```
 
 Or (if not completed in class):
