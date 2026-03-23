@@ -15,3 +15,4 @@ hash_map.put("ghi", "ghi")
 hash_map.put("ihg", "ihg")
 
 print(hash_map.display())
+print(repr(player_one))

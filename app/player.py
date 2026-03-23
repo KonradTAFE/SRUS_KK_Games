@@ -1,7 +1,8 @@
 class Player:
-    def __init__(self, uid: str, name: str):
+    def __init__(self, uid: str, name: str, score: int = 0):
         self.__uid = uid
         self.__name = name
+        self.__score = score
 
     @property
     def uid(self):
@@ -12,6 +13,15 @@ class Player:
     def name(self):
         # returns the player name
         return self.__name
+
+    @property
+    def score(self):
+        # returns the player's score
+        return self.__score
+
+    @score.setter
+    def score(self, score: int):
+        self.__score = score
 
     @name.setter
     def name(self, name: str):
@@ -25,11 +35,14 @@ class Player:
         return hash_value % size
 
     def __hash__(self, size: int):
-        return self.hash_function(self.uid) % size
+        return self.hash_function(self.uid, size)
 
     def __eq__(self, other):
         return self.uid == other.uid
 
     def __str__(self):
         # returns player as a string
-        return "Player " + self.uid + " - " + self.name
+        return f"Player {self.uid} - {self.name} - score: {self.score}"
+    
+    def __repr__(self):
+        return f"{self.__class__.__name__}(name='{self.name}', uid='{self.uid}', score='{self.score}')"
