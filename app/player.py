@@ -21,7 +21,10 @@ class Player:
 
     @score.setter
     def score(self, score: int):
-        self.__score = score
+        if score < 0:
+            raise ValueError("Score cannot be negative")
+        else:
+            self.__score = score
 
     @name.setter
     def name(self, name: str):
@@ -43,6 +46,6 @@ class Player:
     def __str__(self):
         # returns player as a string
         return f"Player {self.uid} - {self.name} - score: {self.score}"
-    
+
     def __repr__(self):
         return f"{self.__class__.__name__}(name='{self.name}', uid='{self.uid}', score='{self.score}')"

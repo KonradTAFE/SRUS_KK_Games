@@ -61,9 +61,9 @@ Provide a getter (property) and a setter method for this value.
 
 #### 3.1.1. Success criteria
 You can mark this task as complete when you have (your assessor will use a similar list):
-- [ ] Correct use of private instance variable
-- [ ] Score is optional (in the constructor) and defaults to 0
-- [ ] Use of properties to create a getter and setter
+- [x] Correct use of private instance variable
+- [x] Score is optional (in the constructor) and defaults to 0
+- [x] Use of properties to create a getter and setter
 - [ ] Raising ValueError if someone attempts to set a non-positive value
 - [ ] Existing tests pass
 - [ ] At least one (and ideally only one) commit showing the above changes
