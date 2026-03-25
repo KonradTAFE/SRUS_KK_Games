@@ -1,5 +1,5 @@
 import sys
-
+import random
 
 class Player:
     def __init__(self, uid: str, name: str, score: int = 0):
@@ -42,21 +42,25 @@ class Player:
 
     @classmethod
     def sort_quickly(cls, player_list):
-        if player_list == sorted(player_list, reverse=True):
-            return player_list
-        elif player_list == sorted(player_list):
-            return sorted(player_list, reverse=True)
+        # if player_list == sorted(player_list, reverse=True):
+        #     return player_list
+        # elif player_list == sorted(player_list):
+        #     return sorted(player_list, reverse=True)
         if len(player_list) <= 1:
             return player_list
-        pivot = player_list[0]
+        # pivot = player_list[0]
+        pivot = random.choice(player_list)
         left = []
+        middle = []
         right = []
-        for x in player_list[1:]:
+        for x in player_list:
             if x > pivot:
                 left.append(x)
+            elif x == pivot:
+                middle.append(x)
             else:
                 right.append(x)
-        return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
+        return cls.sort_quickly(left) + middle + cls.sort_quickly(right)
 
     def __hash__(self, size: int):
         return self.hash_function(self.uid, size)
