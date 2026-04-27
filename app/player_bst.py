@@ -21,13 +21,30 @@ class PlayerBST:
 
         if key == self.__root.player.name:
             self.__root.player = player
-
+            return
         elif key > self.__root.player.name:
             if self.__root.right is None:
                 self.__root.right = PlayerBST()
             self.__root.right.insert(player)
-
+            return
         else:
             if self.__root.left is None:
                 self.__root.left = PlayerBST()
             self.__root.left.insert(player)
+
+
+    def search(self, name):
+        if self.__root is None:
+            return None
+        if self.__root.player.name == name:
+            return self.__root.player
+        if name > self.__root.player.name:
+            if self.__root.right is None:
+                return None
+            else:
+                return self.__root.right.search(name)
+        else:
+            if self.__root.left is None:
+                return None
+            else:
+                return self.__root.left.search(name)

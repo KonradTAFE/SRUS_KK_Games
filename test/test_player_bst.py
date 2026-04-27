@@ -32,3 +32,16 @@ class TestPlayerBST(unittest.TestCase):
         self.my_bst.insert(self.player_b)
         self.my_bst.insert(self.player_b_updated)
         self.assertEqual(self.my_bst.root.player, self.player_b_updated)
+
+    def test_search_empty(self):
+        result = self.my_bst.search(self.player_b)
+        self.assertEqual(result, None)
+
+    def test_search_not_empty(self):
+        self.my_bst.insert(self.player_b)
+        self.my_bst.insert(self.player_a)
+        self.my_bst.insert(self.player_c)
+        result_a = self.my_bst.search("1")
+        self.assertEqual(result_a, self.player_a)
+        result_c = self.my_bst.search("3")
+        self.assertEqual(result_c, self.player_c)
