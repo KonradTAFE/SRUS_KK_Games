@@ -45,3 +45,12 @@ class TestPlayerBST(unittest.TestCase):
         self.assertEqual(result_a, self.player_a)
         result_c = self.my_bst.search("3")
         self.assertEqual(result_c, self.player_c)
+
+    def test_balance(self):
+        self.my_bst.insert(self.player_a)
+        self.my_bst.insert(self.player_b)
+        self.my_bst.insert(self.player_c)
+        balanced = self.my_bst.balance()
+        self.assertEqual(balanced.root.player.name, "2")
+        self.assertEqual(balanced.root.left.root.player.name, "1")
+        self.assertEqual(balanced.root.right.root.player.name, "3")

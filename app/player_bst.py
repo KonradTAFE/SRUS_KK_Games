@@ -48,3 +48,30 @@ class PlayerBST:
                 return None
             else:
                 return self.__root.left.search(name)
+
+    def tree_to_list(self):
+        bst_list = []
+        self.add_to_list(self, bst_list)
+        return bst_list
+
+    def add_to_list(self, tree, new_list):
+        if tree is None or tree.root is None:
+            return
+        self.add_to_list(tree.root.left, new_list)
+        new_list.append(tree.root.player)
+        self.add_to_list(tree.root.right, new_list)
+
+    def build_balance(self, players_list):
+        if not players_list:
+            return None
+
+        mid = len(players_list) // 2
+        balanced_bst = PlayerBST()
+        balanced_bst.root = PlayerBNode(players_list[mid])
+        balanced_bst.root.left = self.build_balance(players_list[:mid])
+        balanced_bst.root.right = self.build_balance(players_list[mid + 1:])
+        return balanced_bst
+
+    def balance(self):
+        sorted_players_list = self.tree_to_list()
+        return self.build_balance(sorted_players_list)
