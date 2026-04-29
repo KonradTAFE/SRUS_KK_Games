@@ -34,7 +34,7 @@ class TestPlayerBST(unittest.TestCase):
         self.assertEqual(self.my_bst.root.player, self.player_b_updated)
 
     def test_search_empty(self):
-        result = self.my_bst.search(self.player_b)
+        result = self.my_bst.search(self.player_b.name)
         self.assertEqual(result, None)
 
     def test_search_not_empty(self):
